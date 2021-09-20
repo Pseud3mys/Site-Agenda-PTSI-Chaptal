@@ -15,7 +15,7 @@ a{
 /*HEADER*/
 
 header{
-	height: 20%;
+	height: 10vh;
 	background-color: #5151c2;
 	width: 100%;
 }
@@ -26,9 +26,9 @@ header ul{
 
 header li{
 	display: inline-block;
-	margin: 10px 50px;
+	margin: 2vh 30px;
 	color: #fff;
-	font-size: 20px;
+	font-size: 4vh;
 	font-weight: 700;
 	text-shadow: 5px 5px 5px #000;
 }

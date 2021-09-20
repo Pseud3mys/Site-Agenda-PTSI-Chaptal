@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Agenda PTSI 2020-2021</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	<header>
+		<ul>
+			<a href="colles"><li class="colles actif">Kholles</li></a>
+			<a href="taf"><li class="taf">Travail de la semaine</li></a>
+		</ul>
+	</header>
+	<body>
+		<div class="center">
+			<h1>Les khôlles de la semaine :</h1>
+			{% for matiere, tuple in colle_dict.items %}
+			<div class="container">
+				<h2 class="matiere" style="color:{{tuple.1}}">{{matiere}}</h2>
+				<p class="contenu">{{tuple.0|safe}}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+</body>
+</html>

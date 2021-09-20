@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Agenda PTSI 2020-2021</title>
+	<link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
+</head>
+<body>
+	<header>
+		<ul>
+			<a href="colles"><li class="colles">Kholles</li></a>
+			<a href="taf"><li class="taf">Travail de la semaine</li></a>
+		</ul>
+	</header>
+	<body>
+		<p>
+        {% for name, col in colors.items %}
+            <p style="color:{{col}}">{{name}}</p>
+        {% endfor %}
+        </p>
+	</body>
+</body>
+</html>

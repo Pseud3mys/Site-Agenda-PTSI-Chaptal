@@ -1,0 +1,48 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+	color: #000;
+}
+
+.actif{
+	color: #ea5212;
+}
+
+/*HEADER*/
+
+header{
+	height: 20%;
+	background-color: #5151c2;
+	width: 100%;
+}
+
+header ul{
+	text-align: center;
+}
+
+header li{
+	display: inline-block;
+	margin: 10px 50px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+	text-shadow: 5px 5px 5px #000;
+}
+
+/*KHOLLES*/
+
+.center{
+	margin: 5% 10px;
+}
+
+.center h1{
+	text-decoration: underline;
+}
+
+.container{
+	margin: 25px 0 0 10px;
+}

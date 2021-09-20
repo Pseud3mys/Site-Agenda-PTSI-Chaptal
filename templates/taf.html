@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Agenda PTSI 2020-2021</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	<header>
+		<ul>
+			<a href="colles"><li class="colles">Kholles</li></a>
+			<a href="taf"><li class="taf actif">Travail de la semaine</li></a>
+		</ul>
+	</header>
+	<body>
+		<div class="center">
+			<h1>Les devoirs de la semaine :</h2>
+			{% for date, events_list in dict_taf.items %}
+			<div class="container">
+				<h2>{{date}}</h2>
+				{% for event in events_list %}
+				<h3 class="matiere" style="color:{{event.3}}">{{event.1}}</h3>
+				<p class="contenu">{{event.2|safe}}</p>
+			{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+</body>
+</html>

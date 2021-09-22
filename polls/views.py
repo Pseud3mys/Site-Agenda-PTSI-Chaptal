@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from .calendarAPI import events, connect
+from .Scripts import read_colles
 
 colors = {
  'SI': "#D5C404",
@@ -50,9 +51,16 @@ def taf(request):
     return HttpResponse(template.render(context, request))
 
 def colles(request):
+    if request.method=="GET":
+        groupe = request.GET.get("Sgroupe")
+        if groupe is None:
+            groupe = "9"
     template = loader.get_template('colles.html')
     colle_dict = events.colle_by_matiere()
+    colloscope = read_colles.get_colles(int(groupe))
     context = {
-        'colle_dict': colle_dict
+        'colle_dict': colle_dict,
+        'colloscope': colloscope,
+        'num_groupe': groupe
     }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(context, request) + str(request))

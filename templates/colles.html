@@ -4,15 +4,36 @@
 		<ul>
 			<a href="colles"><li class="colles actif">Khôlles</li></a>
 			<a href="taf"><li class="taf">Travail de la semaine</li></a>
+
+			<form action="#">
+			    <select name="Sgroupe" onchange='if(this.value != 0) { this.form.submit(); }'>
+                    {% for i in "123456789" %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+			    <!--input type="submit" class="btn btn-primary" value="valider"-->
+			</form>
+
 		</ul>
 	</header>
 	<body>
+	    <div class="center">
+			<h1>Colles du groupe {{num_groupe}}</h1>
+			{% for colle in colloscope %}
+			<div class="container">
+			    <b style="color:{{colle.4}}">{{colle.0}}</b>: {{colle.1}}, salle {{colle.3}} ({{colle.2}})
+			</div>
+			{% endfor %}
+		</div>
 		<div class="center">
-			<h1>Les khôlles de la semaine :</h1>
+			<h1>Les programmes de khôlles :</h1>
 			{% for matiere, tuple in colle_dict.items %}
 			<div class="container">
 				<h2 class="matiere" style="color:{{tuple.1}}">{{matiere}}</h2>
-				<p class="contenu">{{tuple.0|safe}}</p>
+				<div class="contenu">{{tuple.0|safe}}</div>
 			</div>
 			{% endfor %}
 		</div>

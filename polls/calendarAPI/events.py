@@ -16,10 +16,10 @@ def mat2color(matiere):
         return colors['Phy']
     if "SI" in matiere.upper():
         return colors['SI']
-    """
-    if "MATH" in matiere.upper():
-        return colors('Maths')
-    elif "PHY" in matiere.upper():"""
+    if "FR" in matiere.upper():
+        return colors['Fr']
+    if "ANG" in matiere.upper():
+        return colors['Ang']
 
 def homework_by_day():
     """
@@ -71,7 +71,7 @@ def colle_by_matiere():
         color = mat2color(titre)
         if ("khôlle" in titre) or ("kholle" in titre) or ("colle" in titre):
             if "SI" in titre:
-                events["Science de l'ingé"] = (desc, color)
+                events["Science de l'ingénieur"] = (desc, color)
             elif "Phy" in titre:
                 events["Physique"] = (desc, color)
             elif "math" in titre:

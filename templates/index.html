@@ -1,17 +1,42 @@
 {% include 'header.html' %}
+<header>
+	<div class="header-tel">
+		<nav class="menu-tel">
+			<input type="checkbox" id="toggle-menu" class="check-menu">
+			<label for="toggle-menu" class="menu-icon">
+				<span class="nav-burger">
+					&nbsp
+				</span>
+			</label>
+			<div class="nav-wrapper">
+				<div class="nav-elms">
+					<a href="colles">Khôlles</a><br>
+					<a href="taf">Travail à faire</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<nav class="header-pc">
+		<div class="logo">
+			<a href="http://www.ptsi-chaptal.fr" target="blank">PTSI Chaptal 2020-2021</a>
+		</div>
+		<div class="liste">
+			<a href="colles">Khôlles</a>
+			<a href="taf">Travail à faire</a>
+		</div>
+	</nav>
+</header>
 <body>
-	<header>
-		<ul>
-			<a href="colles"><li class="colles">Khôlles</li></a>
-			<a href="taf"><li class="taf">Travail de la semaine</li></a>
-		</ul>
-	</header>
-	<body>
-		<p>
-        {% for name, col in colors.items %}
-            <p style="color:{{col}}">{{name}}</p>
-        {% endfor %}
-        </p>
-	</body>
+	<p>
+    {% for name, col in colors.items %}
+        <p style="color:{{col}}">{{name}}</p>
+    {% endfor %}
+    </p>
+    <h2>quelques details:</h2>
+    <ul>
+        <li> - les devoirs sans description ne sont pas affiché.</li>
+        <li> - les doublons non plus (normalement).</li>
+        <li> - vérifié que le reste des devoirs sont là (la 1ere fois histoire d'être sur que tt fonctionne correctement).</li>
+    </ul>
 </body>
 </html>

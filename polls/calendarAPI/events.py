@@ -1,31 +1,13 @@
 from .connect import get_events
 import datetime
+from ..Scripts.global_tool import mat2color, text2mat, num2day, CleanStr
 
-colors = {
- 'SI': "#D5C404",
- 'Maths': "#0415D5",
- 'Phy': "#C404D5",
- 'Ang': "#D5047E",
- 'Fr': "#7DD504",
- 'Red': "#D50415",
-}
-def mat2color(matiere):
-    if "MATH" in matiere.upper():
-        return colors['Maths']
-    if "PHY" in matiere.upper():
-        return colors['Phy']
-    if "SI" in matiere.upper():
-        return colors['SI']
-    if "FR" in matiere.upper():
-        return colors['Fr']
-    if "ANG" in matiere.upper():
-        return colors['Ang']
 
 def homework_by_day():
     """
     events = {
-    "demain (20/09)":[tuple_event, tuple_event],
-    "le 21/09":[tuple_event,]
+    "demain, le Mardi 20/09":[tuple_event, tuple_event],
+    "Mardi 21/09":[tuple_event,]
     }
     """
     events_list = get_events(200)
@@ -44,17 +26,22 @@ def homework_by_day():
             continue
 
         event_day = int(date[0:2])  # "20/09" -> 20
+        day_of_colle = datetime.datetime.strptime(date+"/"+str(today.year), '%d/%m/%Y')
+        date_str = "%s %s"%(num2day[day_of_colle.weekday()], date)
+
+        # On prend le taf de today+1
         if event_day == int(today.day)+1:
-            if "demain, le %s"%date in events:
-                events["demain, le %s"%date].append(event_tuple)
+            tomorrow_date_str = "%s (demain)"%date_str
+            if tomorrow_date_str  in events:
+                events[tomorrow_date_str].append(event_tuple)
             else:
-                events["demain, le %s"%date] = [event_tuple]
+                events[tomorrow_date_str] = [event_tuple]
         # si c'est pas aujourd'hui
         else:
-            if "le %s"%date in events:
-                events["le %s"%date].append(event_tuple)
+            if date_str in events:
+                events[date_str].append(event_tuple)
             else:
-                events["le %s"%date] = [event_tuple]
+                events[date_str] = [event_tuple]
         last = desc
     return events
 
@@ -63,20 +50,22 @@ def colle_by_matiere():
     """
     events = {matiere: desciption}
     """
-    events_list = get_events(5)
+    """now = datetime.datetime.utcnow().isoformat() # test tmp max
+    delta = datetime.timedelta(hours=10)
+    nowDelta = now + delta"""
+    events_list = get_events(nbr_events=3)
     events = {}
     for event in events_list:
         # untuple
         _date, titre, desc = event
+        print(desc)
         color = mat2color(titre)
         if ("khôlle" in titre) or ("kholle" in titre) or ("colle" in titre):
-            if "SI" in titre:
-                events["Science de l'ingénieur"] = (desc, color)
-            elif "Phy" in titre:
-                events["Physique"] = (desc, color)
-            elif "math" in titre:
-                events["Maths"] = (desc, color)
+            if text2mat(titre):
+                if text2mat(titre) is not events:
+                    events[text2mat(titre)] = (desc, color)
             else:
-                events[titre] = (desc, color)
+                if titre is not events:
+                    events[titre] = (desc, color)
     return events
 

@@ -1,42 +1,68 @@
 {% include 'header.html' %}
+<header>
+	<div class="header-tel">
+		<nav class="menu-tel">
+			<input type="checkbox" id="toggle-menu" class="check-menu">
+			<label for="toggle-menu" class="menu-icon">
+				<span class="nav-burger">
+					&nbsp
+				</span>
+			</label>
+			<div class="nav-wrapper">
+				<div class="nav-elms">
+					<a href="colles">Khôlles</a><br>
+					<a href="taf">Travail à faire</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<nav class="header-pc">
+		<div class="logo">
+			<a href="http://www.ptsi-chaptal.fr" target="blank">PTSI Chaptal 2020-2021</a>
+		</div>
+		<div class="liste">
+			<a href="colles" id="actif">Khôlles</a>
+			<a href="taf">Travail à faire</a>
+		</div>
+	</nav>
+</header>
 <body>
-	<header>
-		<ul>
-			<a href="colles"><li class="colles actif">Khôlles</li></a>
-			<a href="taf"><li class="taf">Travail de la semaine</li></a>
-
-			<form action="#">
-			    <select name="Sgroupe" onchange='if(this.value != 0) { this.form.submit(); }'>
+    <div class="center">
+        <div class="horraires">
+	        <form action="#">
+	            <label for="Sgroupe">Choisissez votre groupe :</label>
+			    <select name="Sgroupe" onchange='if(this.value != 0) { this.form.submit(); }' selected={{num_groupe}}>
+			        <option value="">--Séléctionner--</option>
                     {% for i in "123456789" %}
                     <option value="{{i}}">{{i}}</option>
                     {% endfor %}
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
                 </select>
-			    <!--input type="submit" class="btn btn-primary" value="valider"-->
 			</form>
-
-		</ul>
-	</header>
-	<body>
-	    <div class="center">
 			<h1>Colles du groupe {{num_groupe}}</h1>
 			{% for colle in colloscope %}
-			<div class="container">
-			    <b style="color:{{colle.4}}">{{colle.0}}</b>: {{colle.1}}, salle {{colle.3}} ({{colle.2}})
-			</div>
-			{% endfor %}
+    			{% if colle.1 != "" %}
+    			    <br><p class="kholles"><b style="color:{{colle.4}}">{{colle.0}}</b>:<br> {{colle.1}}, salle {{colle.3}} ({{colle.2}})</p><br>
+    			{% else %}
+    			    <p><b>{{colle.0}}</b></p>
+    			{% endif %}
+		    {% endfor %}
 		</div>
-		<div class="center">
-			<h1>Les programmes de khôlles :</h1>
-			{% for matiere, tuple in colle_dict.items %}
-			<div class="container">
-				<h2 class="matiere" style="color:{{tuple.1}}">{{matiere}}</h2>
-				<div class="contenu">{{tuple.0|safe}}</div>
-			</div>
-			{% endfor %}
+	</div>
+	<div class="center">
+		<h1>Les programmes de khôlles :</h1>
+		{% for matiere, tuple in colle_dict.items %}
+		<div class="container">
+			<h2 class="matiere" style="color:{{tuple.1}}">{{matiere}}</h2>
+			<div class="contenu">{{tuple.0|safe}}</div>
 		</div>
-	</body>
+		{% endfor %}
+	</div>
 </body>
 </html>
+

@@ -4,24 +4,14 @@ from googleapiclient.discovery import build
 dev_Key = "AIzaSyDiE-XzamHeDBZO9icSIvCIx7m4Xwx5IBE"
 
 
-def CleanStr(str):
-    clean_str = ""
-    add = True
-    for a in str:
-        if a == "<":
-            add = False
-        if add:
-            clean_str += a
-        if a == ">":
-            add = True
-            clean_str += " "
-    return clean_str
-
-
-def get_events(nbr_events=25):
+def get_events(nbr_events=25, time_max=False):
     service = build('calendar', 'v3', developerKey=dev_Key)
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-    events_result = service.events().list(calendarId='ptsi.chaptal@gmail.com', timeMin=now, singleEvents=True,
+    if not time_max:
+        events_result = service.events().list(calendarId='ptsi.chaptal@gmail.com', timeMin=now, singleEvents=True,
+                                          maxResults=nbr_events, orderBy='startTime').execute()
+    else:
+        events_result = service.events().list(calendarId='ptsi.chaptal@gmail.com', timeMin=now, timeMax=time_max, singleEvents=True,
                                           maxResults=nbr_events, orderBy='startTime').execute()
     events = events_result.get('items', [])
     if not events:

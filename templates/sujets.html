@@ -1,0 +1,39 @@
+{% include 'header.html' %}
+<header>
+	<div class="header-tel">
+		<nav class="menu-tel">
+			<input type="checkbox" id="toggle-menu" class="check-menu">
+			<label for="toggle-menu" class="menu-icon">
+				<span class="nav-burger">
+					&nbsp
+				</span>
+			</label>
+			<div class="nav-wrapper">
+				<div class="nav-elms">
+					<a href="colles">Khôlles</a><br>
+					<a href="taf">Travail à faire</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<nav class="header-pc">
+		<div class="logo">
+			<a href="http://www.ptsi-chaptal.fr" target="blank">PTSI Chaptal 2020-2021</a>
+		</div>
+		<div class="liste">
+			<a href="colles">Khôlles</a>
+			<a href="taf">Travail à faire</a>
+		</div>
+	</nav>
+</header>
+
+<body>
+    <label><a href="/admin">- ajouter sujet -</a></label>
+	{% for sujet in latest_sujet_list %}
+	    <!--h1>{{sujet.titre}}</h1-->
+	    <div>
+            <img src="{{ sujet.photo.url }}" alt="" width="500">
+        </div>
+	{% endfor %}
+</body>
+</html>

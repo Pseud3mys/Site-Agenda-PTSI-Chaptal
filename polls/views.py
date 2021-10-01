@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from polls.models import Sujet
 
 from .calendarAPI import events
 from .Scripts import read_colles
@@ -37,4 +38,15 @@ def colles(request):
     }
     return HttpResponse(template.render(context, request) + str(request))
 
-
+def sujets(request):
+    if request.method=="GET":
+        pass
+        """groupe = request.GET.get("Sgroupe")
+        if groupe is None:
+            groupe = "9"""
+    template = loader.get_template('sujets.html')
+    latest_sujet_list = Sujet.objects.order_by('-pub_date')[:5]
+    context = {
+        "latest_sujet_list": latest_sujet_list,
+    }
+    return HttpResponse(template.render(context, request) + str(request))

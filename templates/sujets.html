@@ -28,11 +28,24 @@
 </header>
 
 <body>
-    <label><a href="/admin">- ajouter sujet -</a></label>
+    <label><a href="/admin">-ajouter un sujet-</a></label>
+    <form action="#">
+        <label for="Smatiere">Choisissez la matiere :</label>
+	    <select name="Smatiere" onchange='this.form.submit();' selected="Fr">
+            <option value="All">--Toutes--</option>
+	        {% for val, matiere in matiere_list.items %}
+	            {% if val == val_selected %}
+                    <option value={{val}} selected>{{matiere}}</option>
+	            {% else %}
+                    <option value={{val}}>{{matiere}}</option>
+                {% endif %}
+	        {% endfor %}
+        </select>
+	</form>
 	{% for sujet in latest_sujet_list %}
-	    <!--h1>{{sujet.titre}}</h1-->
+	    <!--h1>{{sujet.pub_date}}</h1-->
 	    <div>
-            <img src="{{ sujet.photo.url }}" alt="" width="500">
+            <img src="{{ sujet.image.url }}" alt="" width="100%">
         </div>
 	{% endfor %}
 </body>

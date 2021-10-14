@@ -58,7 +58,6 @@ def colle_by_matiere():
     for event in events_list:
         # untuple
         _date, titre, desc = event
-        print(desc)
         color = mat2color(titre)
         if ("khôlle" in titre) or ("kholle" in titre) or ("colle" in titre):
             if text2mat(titre):
@@ -69,3 +68,12 @@ def colle_by_matiere():
                     events[titre] = (desc, color)
     return events
 
+def get_num_semaine():
+    colle_dict = colle_by_matiere()
+    # in essaye de recup le num de la semaine ecrit par la prof de math
+    num_semaine = ""
+    for matiere, tuple_info in colle_dict.items():
+        desc, color = tuple_info
+        if desc.upper().find("SEMAINE") >= 0:
+            num_semaine = desc[desc.upper().find("SEMAINE"): desc.upper().find("SEMAINE")+9]
+    return num_semaine

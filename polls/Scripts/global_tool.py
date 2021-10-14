@@ -9,8 +9,17 @@ colors = {
 }
 
 
+matiere_list = {
+    'Mat': "Maths",
+    'Phy': "Physique Chimie",
+    'SI': "Science de l'ingénieur",
+    'Ang': "Anglais",
+    'Fr': "Français",
+}
+
+
 def mat2color(matiere):
-    if "MATH" in matiere.upper():
+    if "MAT" in matiere.upper():
         return colors['Maths']
     if "PHY" in matiere.upper():
         return colors['Phy']
@@ -25,7 +34,7 @@ def mat2color(matiere):
 
 
 def text2mat(text):
-    if "MATH" in text.upper():
+    if "MAT" in text.upper():
         return "Maths"
     if "PHY" in text.upper():
         return "Physique"

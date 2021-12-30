@@ -22,7 +22,7 @@ def homework_by_day():
         # petit trie
         if desc == "No description" or desc==last:
             continue
-        if ("khôlle" in title) or ("kholle" in title) or ("colle" in title):
+        if ("khôlle" in title) or ("kholle" in title) or ("colle" in title) or ("Khôlle" in title):
             continue
 
         event_day = int(date[0:2])  # "20/09" -> 20
@@ -59,7 +59,7 @@ def colle_by_matiere():
         # untuple
         _date, titre, desc = event
         color = mat2color(titre)
-        if ("khôlle" in titre) or ("kholle" in titre) or ("colle" in titre):
+        if ("khôlle" in titre) or ("kholle" in titre) or ("colle" in titre) or ("Khôlle" in titre):
             if text2mat(titre):
                 if text2mat(titre) is not events:
                     events[text2mat(titre)] = (desc, color)

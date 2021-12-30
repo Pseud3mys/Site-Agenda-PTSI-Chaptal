@@ -32,13 +32,13 @@ def colles(request):
             groupe = "9"
     template = loader.get_template('colles.html')
     colle_dict = events.colle_by_matiere()
-    colloscope = read_colles.get_colles(int(groupe))
-    num_semaine = events.get_num_semaine()
+    colloscope, num_semaine = read_colles.get_colles(int(groupe))
+    #num_semaine = events.get_num_semaine()
     context = {
         'colle_dict': colle_dict,
         'colloscope': colloscope,
         'num_groupe': groupe,
-        'num_semaine': num_semaine,
+        'num_semaine':  "Semaine "+num_semaine,
     }
     return HttpResponse(template.render(context, request) + str(request))
 
